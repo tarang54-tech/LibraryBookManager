@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library Book Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="library-header">
+    <div class="header-inner">
+        <div class="brass-plate">
+            <span class="plate-eyebrow">Est. Catalog System</span>
+            <h1>Library Book Manager</h1>
+            <p class="tagline">Search &middot; Borrow &middot; Catalog</p>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="top-section">
+        <label class="search-field">
+            <span class="search-icon" aria-hidden="true">&#9906;</span>
+            <input type="text" id="search" placeholder="Search by title or author&hellip;" aria-label="Search by title or author">
+        </label>
+        <button id="searchBtn" class="btn btn-outline">Search</button>
+        <button class="btn btn-add" id="showFormBtn">
+            <span class="plus" aria-hidden="true">+</span> Add Book
+        </button>
+    </div>
+
+    <section class="add-form" id="addForm" aria-labelledby="addFormHeading">
+        <span class="form-eyebrow">New Entry</span>
+        <h2 id="addFormHeading">Add a Book to the Catalog</h2>
+
+        <div class="form-grid">
+            <label class="field">
+                <span>Title</span>
+                <input type="text" id="title" placeholder="e.g. The Great Gatsby">
+            </label>
+            <label class="field">
+                <span>Author</span>
+                <input type="text" id="author" placeholder="e.g. F. Scott Fitzgerald">
+            </label>
+            <label class="field">
+                <span>Category</span>
+                <input type="text" id="category" placeholder="e.g. Fiction">
+            </label>
+            <label class="field">
+                <span>ISBN</span>
+                <input type="text" id="isbn" placeholder="e.g. 9780743273565">
+            </label>
+        </div>
+
+        <button id="addBookBtn" class="btn btn-primary">Add Book to Shelf</button>
+    </section>
+
+    <div class="section-heading">
+        <h2>Library Books</h2>
+        <span class="count-chip" id="bookCount">&nbsp;</span>
+    </div>
+
+    <div class="books" id="bookList">
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

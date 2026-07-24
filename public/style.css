@@ -1,0 +1,572 @@
+/* ============================================
+   Library Book Manager — Catalog Card Design
+   ============================================ */
+
+:root {
+    --bg: #EFE7D3;
+    --bg-stripe: #E8DEC5;
+    --card-bg: #FBF6E9;
+    --card-bg-alt: #F6EFDC;
+
+    --forest: #16352A;
+    --forest-2: #24523E;
+    --forest-ink: #1E5F42;
+
+    --rust: #9C3B2C;
+    --rust-ink: #A03B2A;
+
+    --brass: #B98B3E;
+    --brass-light: #E4C989;
+    --brass-dark: #8C6626;
+
+    --ink: #2A241C;
+    --muted: #766B54;
+    --line: #D9CBA6;
+
+    --shadow-sm: 0 1px 3px rgba(22, 53, 42, 0.12);
+    --shadow-md: 0 6px 18px rgba(22, 53, 42, 0.16);
+    --shadow-lg: 0 14px 32px rgba(22, 53, 42, 0.22);
+
+    --radius: 6px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lora', Georgia, serif;
+    color: var(--ink);
+    background-color: var(--bg);
+    background-image:
+        repeating-linear-gradient(
+            135deg,
+            var(--bg-stripe) 0px,
+            var(--bg-stripe) 1px,
+            transparent 1px,
+            transparent 26px
+        );
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    color: var(--forest);
+    letter-spacing: -0.01em;
+}
+
+/* ---------- Header ---------- */
+
+.library-header {
+    background:
+        repeating-linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.02) 0px,
+            rgba(255, 255, 255, 0.02) 2px,
+            transparent 2px,
+            transparent 5px
+        ),
+        linear-gradient(160deg, var(--forest) 0%, var(--forest-2) 100%);
+    border-bottom: 5px solid var(--brass);
+    padding: 44px 20px 40px;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: center;
+}
+
+.brass-plate {
+    text-align: center;
+    background: var(--card-bg);
+    border: 2px solid var(--brass);
+    border-radius: 4px;
+    padding: 20px 46px 24px;
+    box-shadow: var(--shadow-lg), inset 0 0 0 4px rgba(185, 139, 62, 0.15);
+    position: relative;
+}
+
+.brass-plate::before,
+.brass-plate::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--brass-dark);
+    transform: translateY(-50%);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.4);
+}
+
+.brass-plate::before { left: 14px; }
+.brass-plate::after { right: 14px; }
+
+.plate-eyebrow {
+    display: block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 6px;
+}
+
+.brass-plate h1 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+}
+
+.tagline {
+    margin: 8px 0 0;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+    width: 88%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 0 80px;
+}
+
+/* ---------- Search / top section ---------- */
+
+.top-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 34px;
+    flex-wrap: wrap;
+}
+
+.search-field {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0 16px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.search-field:focus-within {
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px rgba(185, 139, 62, 0.22);
+}
+
+.search-icon {
+    color: var(--brass-dark);
+    font-size: 16px;
+}
+
+.search-field input {
+    border: none;
+    padding: 13px 0;
+    background: transparent;
+    flex: 1;
+}
+
+.search-field input:focus {
+    outline: none;
+}
+
+input {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 15px;
+    color: var(--ink);
+}
+
+input::placeholder {
+    color: #A79A78;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+    padding: 13px 22px;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: var(--radius);
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--brass);
+    outline-offset: 2px;
+}
+
+.btn-outline {
+    background: var(--card-bg);
+    border-color: var(--forest);
+    color: var(--forest);
+}
+
+.btn-outline:hover {
+    background: var(--forest);
+    color: var(--card-bg);
+}
+
+.btn-add {
+    background: var(--rust-ink);
+    color: #FCF3E9;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-add:hover {
+    background: #7E2E21;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-add .plus {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.btn-primary {
+    background: var(--forest-ink);
+    color: #F4EFE1;
+}
+
+.btn-primary:hover {
+    background: var(--forest);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-text-danger {
+    background: transparent;
+    color: var(--rust-ink);
+    border-color: transparent;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-text-danger:hover {
+    background: rgba(156, 59, 44, 0.1);
+    border-color: rgba(156, 59, 44, 0.3);
+}
+
+button:disabled {
+    background-color: #C9BFA5 !important;
+    color: #FBF6E9 !important;
+    cursor: not-allowed;
+    box-shadow: none !important;
+}
+
+/* ---------- Add form ---------- */
+
+.add-form {
+    display: none;
+    background: var(--card-bg);
+    border: 1.5px dashed var(--brass);
+    border-radius: 8px;
+    padding: 28px 30px 30px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-md);
+    animation: unfold 0.22s ease;
+}
+
+@keyframes unfold {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rust);
+}
+
+.add-form h2 {
+    margin: 4px 0 22px;
+    font-size: 22px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 20px;
+    margin-bottom: 22px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field span {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.field input {
+    padding: 11px 13px;
+    border: 1.5px solid var(--line);
+    border-radius: 4px;
+    background: #FEFCF5;
+}
+
+.field input:focus {
+    outline: none;
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px rgba(185, 139, 62, 0.18);
+}
+
+/* ---------- Section heading ---------- */
+
+.section-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 22px;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 10px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.count-chip {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+}
+
+/* ---------- Books grid ---------- */
+
+.books {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 26px;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--muted);
+    font-style: italic;
+    border: 1.5px dashed var(--line);
+    border-radius: 8px;
+    background: rgba(251, 246, 233, 0.5);
+}
+
+/* ---------- Book card (catalog index card) ---------- */
+
+.card-index {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 26px 20px 18px;
+    box-shadow: var(--shadow-sm);
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: settle 0.4s ease backwards;
+    animation-delay: calc(var(--i, 0) * 0.04s);
+}
+
+.books .card-index:nth-child(6n+1) { --tilt: -0.8deg; }
+.books .card-index:nth-child(6n+2) { --tilt: 0.6deg; }
+.books .card-index:nth-child(6n+3) { --tilt: -0.4deg; }
+.books .card-index:nth-child(6n+4) { --tilt: 0.9deg; }
+.books .card-index:nth-child(6n+5) { --tilt: -0.6deg; }
+.books .card-index:nth-child(6n+6) { --tilt: 0.4deg; }
+
+@keyframes settle {
+    from { opacity: 0; transform: translateY(10px) rotate(0deg); }
+    to { opacity: 1; transform: translateY(0) rotate(var(--tilt, 0deg)); }
+}
+
+.card-index:hover {
+    transform: rotate(0deg) translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    z-index: 2;
+}
+
+.card-punches {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 26px;
+    pointer-events: none;
+}
+
+.card-punches span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.18);
+}
+
+.call-number {
+    display: inline-block;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--brass-dark);
+    background: rgba(185, 139, 62, 0.12);
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.book-title {
+    margin: 0 0 4px;
+    font-size: 19px;
+    line-height: 1.25;
+    font-weight: 600;
+}
+
+.book-author {
+    margin: 0 0 12px;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.card-divider {
+    border: none;
+    border-top: 1px dashed var(--line);
+    margin: 0 0 12px;
+}
+
+.book-meta {
+    margin: 0 0 4px;
+    font-size: 13px;
+    color: var(--ink);
+}
+
+.book-meta .label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-right: 6px;
+}
+
+.book-isbn {
+    margin: 0 0 18px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* Stamp badge */
+
+.stamp {
+    position: absolute;
+    top: 18px;
+    right: 14px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 9px;
+    border: 2px solid currentColor;
+    border-radius: 4px;
+    transform: rotate(6deg);
+    mix-blend-mode: multiply;
+}
+
+.stamp.available {
+    color: var(--forest-ink);
+}
+
+.stamp.borrowed {
+    color: var(--rust-ink);
+    transform: rotate(-5deg);
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.card-actions .btn {
+    padding: 9px 14px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 0;
+}
+
+.card-actions .btn-text-danger {
+    flex: 0 0 auto;
+}
+
+/* ---------- Accessibility & motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .card-index,
+    .add-form {
+        animation: none !important;
+        transition: none !important;
+    }
+    .card-index:hover {
+        transform: none;
+    }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+    .container {
+        width: 92%;
+    }
+
+    .top-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brass-plate {
+        padding: 18px 24px 22px;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .card-actions .btn {
+        width: 100%;
+    }
+}
