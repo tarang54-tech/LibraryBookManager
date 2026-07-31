@@ -266,4 +266,22 @@ addBookBtn.addEventListener("click", async () => {
     }
 });
 
+async function logVisit() {
+    try {
+        await fetch("/api/visit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                browser: navigator.userAgent,
+                device: /Mobi|Android/i.test(navigator.userAgent) ? "Mobile" : "Desktop",
+                page: window.location.pathname
+            })
+        });
+    } catch (error) {
+        console.log("Visit logging failed");
+    }
+}
 loadBooks();
+logVisit();

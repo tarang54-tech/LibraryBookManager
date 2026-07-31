@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Book = require("./models/Book");
+const Visit = require("./models/Visit");
 require("dotenv").config();
 
 const app = express();
@@ -135,7 +136,47 @@ app.delete("/api/books/:id", async (req, res) => {
         });
     }
 });
+app.post("/api/visit", async (req, res) => {
+    try {
+        const visit = new Visit({
+            browser: req.body.browser,
+            device: req.body.device,
+            page: req.body.page
+        });
 
+        await visit.save();
+
+        res.json({
+            message: "Visit logged successfully"
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Error logging visit"
+        });
+    }
+});
+app.get("/api/visit/stats", async (req, res) => {
+    try {
+        const totalVisitors = await Visit.countDocuments();
+
+        const last5Visits = await Visit.find()
+            .sort({ timestamp: -1 })
+            .limit(5);
+
+        res.json({
+            totalVisitors,
+            last5Visits
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Error fetching visitor statistics"
+        });
+    }
+});
 app.listen(process.env.PORT || 3000, () => {
     console.log("Library Book Manager running on port 3000");
 });
