@@ -570,3 +570,6 @@ button:disabled {
         width: 100%;
     }
 }
+#statsBtn{
+    margin-left:10px;
+}

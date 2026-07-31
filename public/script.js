@@ -285,3 +285,23 @@ async function logVisit() {
 }
 loadBooks();
 logVisit();
+
+document.getElementById("statsBtn").addEventListener("click", async () => {
+    try {
+        const res = await fetch("/api/visit/stats");
+        const data = await res.json();
+
+        let text = `📊 Visitor Statistics\n\n`;
+        text += `Total Visitors: ${data.totalVisitors}\n\n`;
+        text += `Last ${data.last5Visits.length} Visits:\n\n`;
+
+        data.last5Visits.forEach((visit, i) => {
+            text += `${i + 1}. ${visit.device}\n`;
+            text += `${new Date(visit.timestamp).toLocaleString()}\n\n`;
+        });
+
+        alert(text);
+    } catch (err) {
+        alert("Unable to fetch visitor statistics.");
+    }
+});
