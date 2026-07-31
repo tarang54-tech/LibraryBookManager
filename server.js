@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Book = require("./models/Book");
-const Visit = require("./models/Visit");
+const Visit = require("./models/visit");
 require("dotenv").config();
 
 const app = express();
